@@ -1,0 +1,13 @@
+body{
+    background-color: black;
+    text-align: center;
+}
+#title{
+    color: limegreen;
+}
+button{
+    color: limegreen;
+    background-color: black;
+    border: 2px solid white;
+    font-size: 25px;
+}
