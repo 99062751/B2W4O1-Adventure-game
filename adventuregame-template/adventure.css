@@ -1,24 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
 body{
-    background-color: rgba(0, 0, 0, 0.945);
+    background-color: black;
     text-align: center;
     color: limegreen;
-
+    font-family: "Special Elite";
+}
+#game-container{
+    height: 950px;
+    width: 1300px;
+    background-position: center;
+    background-size: 1000px;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0 auto;
 }
 #title{
     color: limegreen;
+    font-size: 40px;
 }
+
+#description{
+    font-size: 28px;
+}
+
 button{
     color: limegreen;
     background-color: black;
-    border: 4px solid black;
+    border: none;
     font-size: 25px;
+    font-family: "Special Elite";
+    position: relative;
+    top: 100px;
+    padding-top: 10px;
+    cursor: pointer;
 }
-button:hover{
-    background-color: white;
-}
-#image{
-    width: 100%;
-}
+
 #text{
     font-size: 36px;
+}
+
+#inventoryItem{
+    width: 5%;
 }
