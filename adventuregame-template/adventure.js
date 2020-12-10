@@ -83,10 +83,18 @@ function open(){              //Kan niet openmaken
     items['item'].style.display= "block";
     items['item'].onclick= function(){
         oppakken["sleutel"]= true;
+        items['item'].src = "img/vent.png";
         clicked();
     };
 }
 function clicked(){           //Als sleutel is geklikt
+    items['item'].style.width = "10%";
+    items['item'].style.position = "absolute";
+    items['item'].style.top = "110px";
+    items['item'].style.right = "420px";
+    items['item'].style.height = "20%";
+    items['item'].style.transform = "rotate(-50deg)";
+    items['item'].style.msTransform= "rotate(-100deg)";
     document.getElementById("description").innerHTML= "Goed gedaan! Je hebt de sleutel gevonden!" 
     + "<br>" + "Op dat moment hoor je dat gekrijs weer, er komt iemand aan!" + "<br>" + "Ga snel door het rooster!"
     //button 1
@@ -94,17 +102,40 @@ function clicked(){           //Als sleutel is geklikt
 
     //button 2
     items['option_two'].style.display= "none";
-    items['option_two'].innerHTML= "Kooi";
-    items['option_two'].onclick = function(){ventopen();};
+    items['option_two'].innerHTML= "Open rooster";
+    items['item'].onclick = function(){ventopen();};
 
     //button 3
     items['option_three'].style.display= "none";
 
-    //sleutel
-    items['item'].style.display= "none";
 }
 function ventopen(){          //Rooster openen
     if(oppakken["sleutel"] == true){
-        document.getElementById("description").innerHTML= "Mooi, je bent eruit. Je hoort dat er NU iets naar beneden komt! Zoek snel uit hoe je hier wegkomt!";
-    }  
+        items['item'].src = "img/openvent.png";
+        items['item'].style.width = "36%";
+        items['item'].style.height = "34%";
+        items['item'].style.transform = "rotate(55deg)";
+    items['item'].style.msTransform= "rotate(100deg)";
+    items['item'].style.right = "245px";
+    items['item'].style.top = "55px";
+    items['item'].onclick = function(){ventleft();};
+    }else{
+        document.getElementById("description").innerHTML= "Oeps! Je hebt geen sleutel. Je word opgegeten door het monster wat naar beneden is gekomen."
+    }   
+}
+
+function ventleft(){          //als je het rooster verlaat
+    items['item'].style.display= "none";
+    items['image'].style.backgroundImage = 'url("img/in-house.jpg")';
+    document.getElementById("description").innerHTML= "Mooi, je bent eruit. Maar waar ben je nu?!" 
+    + "<br>" + "Wat zijn die zwarte sporen op de grond en hoe kom je hier weg?" + "<br>" + 
+    "Welk pad neem je?";
+    items['option_one'].style.display = "inline";
+    items['option_two'].style.display = "inline";
+    items['option_three'].style.display = "inline";
+    items['option_one'].innerHTML = "Trap 1";
+    items['option_two'].innerHTML = "Gang";
+    items['option_three'].innerHTML = "Trap 2";
+    items['option_two'].style.marginLeft = "100px";
+    items['option_two'].style.marginRight = "100px";
 }
