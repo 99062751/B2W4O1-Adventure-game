@@ -42,4 +42,8 @@ button{
 
 #inventoryItem{
     width: 10%;
+    position: absolute;
+    top: 100px;
+    right: 180px;
+    cursor: pointer;
 }

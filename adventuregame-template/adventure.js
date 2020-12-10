@@ -1,8 +1,11 @@
 var items = {item:document.getElementById("inventoryItem"), image:document.getElementById("game-container"), option_one: document.getElementById("button1"), 
 option_two: document.getElementById("button2"), option_three: document.getElementById("button3")}; 
 
+var oppakken= {sleutel:false};
+
 var image1 = document.getElementById("game-container");
 intro();
+
 function intro(){              //intro game
     items['option_one'].onclick = function(){start()};
     items['option_two'].onclick = function(){myScript};
@@ -40,9 +43,9 @@ function route1(){             //Aanbellen
     items['item'].style.display= "block";
 
     document.getElementById("description").innerHTML= "Je belt aan, en hoort een rare gil! Dan is alles zwart.." 
-    + "<br>"+ "Je word wakker in een kooi die in een soort kelder ligt, je moet ontsnappen. Je hoort dat gegil weer! Wat ga je doen?";
-    document.getElementById("button1").innerHTML= "Kijken of je iets in je zakken hebt.";
-    document.getElementById("button2").innerHTML= "Kooi openmaken!";
+    + "<br>"+ "Je word wakker in een soort kelder ligt, je moet ontsnappen. Je ziet een rooster! Wat ga je doen?";
+    document.getElementById("button1").innerHTML= "Kijken voor iets in je zakken";
+    document.getElementById("button2").innerHTML= "Ontsnappen door rooster";
 
     items['item'].style.display= "none";
     items['option_three'].style.display= "none";
@@ -64,29 +67,44 @@ function pocket(){             //Kijken of je wat in je zakken hebt
     items['option_two'].style.display= "none";
     items['option_one'].onclick = function(){intro()};
 }
-function open(){              //Kooi openmaken!
-    items['item'].style.display= "block";
-    items['item'].style.position= "absolute";
-    items['item'].style.top= "100px";
-    items['item'].style.right= "180px";
-    items['item'].style.cursor= "pointer";
-    document.getElementById("description").innerHTML= "Je hebt geen SLEUTEL zoek hem snel!";
+function open(){              //Kan niet openmaken
+    document.getElementById("description").innerHTML= "Je hebt geen SLEUTEL!";
+
+    //button 1
     items['option_one'].style.display= "none";
+
+    //button 2
     items['option_two'].style.display= "none";
+
+    //button 3
     items['option_three'].style.display= "none";
-    items['item'].onclick= function(){clicked()};
+
+    //sleutel
+    items['item'].style.display= "block";
+    items['item'].onclick= function(){
+        oppakken["sleutel"]= true;
+        clicked();
+    };
 }
-function clicked(){           //als sleutel is geklikt
-    document.getElementById("description").innerHTML= "Mooi, je hebt hem gevonden maak snel de kooi open!";
-    items['option_three'].style.display= "none";
-    items['option_two'].style.display= "inline";
+function clicked(){           //Als sleutel is geklikt
+    document.getElementById("description").innerHTML= "Goed gedaan! Je hebt de sleutel gevonden!" 
+    + "<br>" + "Op dat moment hoor je dat gekrijs weer, er komt iemand aan!" + "<br>" + "Ga snel door het rooster!"
+    //button 1
     items['option_one'].style.display= "none";
-    document.getElementById("button1").innerHTML= "Kooi openmaken";
+
+    //button 2
+    items['option_two'].style.display= "none";
+    items['option_two'].innerHTML= "Kooi";
+    items['option_two'].onclick = function(){ventopen();};
+
+    //button 3
+    items['option_three'].style.display= "none";
+
+    //sleutel
     items['item'].style.display= "none";
-    items['option_one'].onclick = function(){cageopen()};
 }
-function cageopen(){          //kooi open
-    document.getElementById("description").innerHTML= "Mooi, je bent eruit. Je hoort dat er NU iets naar beneden komt! Zoek snel uit hoe je hier wegkomt!";
+function ventopen(){          //Rooster openen
+    if(oppakken["sleutel"] == true){
+        document.getElementById("description").innerHTML= "Mooi, je bent eruit. Je hoort dat er NU iets naar beneden komt! Zoek snel uit hoe je hier wegkomt!";
+    }  
 }
-
-
