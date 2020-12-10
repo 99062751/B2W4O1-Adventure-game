@@ -10,8 +10,10 @@ function intro(){              //intro game
     items['option_one'].onclick = function(){start()};
     items['option_two'].onclick = function(){myScript};
     items['option_three'].onclick = function(){myScript};
-    document.getElementById("title").innerHTML="HAUNTED: THE GAME";
+    items['image'].style.backgroundImage = "none";
     items['item'].style.display= "none";
+
+    document.getElementById("title").innerHTML="HAUNTED: THE GAME";
     document.getElementById("description").innerHTML="BEGINNING OF GAME"+
     "<p>Welkom, bij HAUNTED: THE GAME!" 
     + "<br>" + "In deze game krijg je verschillende vragen met keuzes die je moet maken." 
@@ -123,8 +125,7 @@ function ventopen(){          //Rooster openen
         document.getElementById("description").innerHTML= "Oeps! Je hebt geen sleutel. Je word opgegeten door het monster wat naar beneden is gekomen."
     }   
 }
-
-function ventleft(){          //als je het rooster verlaat
+function ventleft(){          //als je in het huis bent
     items['item'].style.display= "none";
     items['image'].style.backgroundImage = 'url("img/in-house.jpg")';
     document.getElementById("description").innerHTML= "Mooi, je bent eruit. Maar waar ben je nu?!" 
@@ -133,9 +134,42 @@ function ventleft(){          //als je het rooster verlaat
     items['option_one'].style.display = "inline";
     items['option_two'].style.display = "inline";
     items['option_three'].style.display = "inline";
-    items['option_one'].innerHTML = "Trap 1";
-    items['option_two'].innerHTML = "Gang";
-    items['option_three'].innerHTML = "Trap 2";
+    items['option_one'].innerHTML = "Linkertrap";
+    items['option_two'].innerHTML = "Sporen volgen";
+    items['option_three'].innerHTML = "Rechtertrap";
     items['option_two'].style.marginLeft = "100px";
     items['option_two'].style.marginRight = "100px";
+    items['option_one'].onclick= function(){raam()};
+    items['option_two'].onclick= function(){monster()};
+    items['option_three'].onclick= function(){DeadEnd()};
+}
+function raam(){              //Als je bij het raam bent
+    items['image'].style.backgroundImage = 'url("img/window.png")';
+    items['image'].style.width= "500px"
+    document.getElementById("description").innerHTML= "Je bent bij een raam. Opeens hoor je iets ook naar boven komen!" + "<br>" + 
+    "Wat ga je doen?";
+    items['option_one'].innerHTML = "Spring door raam";
+    items['option_one'].onclick= function(){DeadEnd()};
+    items['option_two'].innerHTML = "Deur dicht doen";
+    items['option_three'].innerHTML = "Deur dicht doen";
+}
+
+function DeadEnd(){           //Vanzelfsprekend
+    document.getElementById("description").innerHTML= "Je springt door het raam en breekt iets, daarna komt het monster naar je toe en sleept" + "<br>" + 
+    "je terug het huis in. Hier sterf je.";
+}
+
+function monster(){         //Als je de sporen volgt
+    items['image'].style.backgroundImage = 'url("img/room.jpg")';
+    items['item'].src = "img/monster.png";
+    items['item'].style.display = "block";
+    items['item'].style.transform = "rotate(0deg)";
+    items['item'].style.msTransform= "rotate(0deg)";
+    items['item'].style.top= "400px";
+    items['item'].style.height= "500px";
+    items['option_one'].innerHTML = "Vechten";
+    items['option_two'].innerHTML = "Rennen";
+    items['option_three'].style.display = "none";
+    document.getElementById("description").innerHTML= "Je volgt de sporen en na een tijdje houden de sporen op en kijk je recht"
+    + "<br>" + "in de ogen van het monster! Wat ga je doen?!";
 }
