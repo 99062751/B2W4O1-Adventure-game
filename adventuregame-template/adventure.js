@@ -3,7 +3,7 @@ option_two: document.getElementById("button2"), option_three: document.getElemen
 
 var image1 = document.getElementById("game-container");
 intro();
-function intro(){
+function intro(){              //intro game
     items['option_one'].onclick = function(){start()};
     items['option_two'].onclick = function(){myScript};
     items['option_three'].onclick = function(){myScript};
@@ -18,7 +18,7 @@ function intro(){
     document.getElementById("button2").style.display= "none";
     document.getElementById("button3").style.display= "none";
 }
-function start(){
+function start(){              //level
     items['item'].style.display= "none";
     items['image'].style.backgroundImage = 'url("img/house.jpg")';
     document.getElementById("description").innerHTML="Level 1";
@@ -32,7 +32,7 @@ function start(){
     items['option_two'].onclick = function(){route2()};
 
 }      
-function route1(){              //Aanbellen
+function route1(){             //Aanbellen
     items['image'].style.backgroundImage = 'url("img/kerker.jpg")';
     items['image'].style.left = 0 + "px";
 
@@ -50,14 +50,13 @@ function route1(){              //Aanbellen
     items['option_one'].onclick = function(){pocket()};
     items['option_two'].onclick = function(){open()};
 }
-function route2(){              //Wegrennen
+function route2(){             //Wegrennen
     document.getElementById("description").innerHTML= "Je rent weg! Na een tijdje begin je weer te lopen en kom je weer terug bij het huis! Wat ga je doen?";
     document.getElementById("button1").innerHTML= "Aanbellen";
     items['option_three'].style.display= "none";
     items['option_two'].style.display= "none";
 }
-
-function pocket(){              //Kijken of je wat in je zakken hebt
+function pocket(){             //Kijken of je wat in je zakken hebt
     document.getElementById("description").innerHTML= "Je hebt niks in je zakken! Gestrest kijk je weer terug wie er benenden is gekomen, en je staat oog in oog met een MONSTER!"
         + "<br>" + "Je word leven opgegeten en gaat dood.";
     document.getElementById("button1").innerHTML= "Opnieuw Beginnen";
@@ -65,29 +64,28 @@ function pocket(){              //Kijken of je wat in je zakken hebt
     items['option_two'].style.display= "none";
     items['option_one'].onclick = function(){intro()};
 }
-
 function open(){              //Kooi openmaken!
     items['item'].style.display= "block";
     items['item'].style.position= "absolute";
-    items['item'].style.bottom= "50px";
-    items['item'].style.right= "80px";
+    items['item'].style.top= "100px";
+    items['item'].style.right= "180px";
     items['item'].style.cursor= "pointer";
     document.getElementById("description").innerHTML= "Je hebt geen SLEUTEL zoek hem snel!";
     items['option_one'].style.display= "none";
     items['option_two'].style.display= "none";
     items['option_three'].style.display= "none";
-
-    items['item'].onclick= function(){
-        document.getElementById("description").innerHTML= "Mooi, je hebt hem gevonden maak snel de kooi open!";
-        items['option_three'].style.display= "none";
-        items['option_two'].style.display= "inline";
-        items['option_one'].style.display= "none";
-        document.getElementById("button1").innerHTML= "Kooi openmaken";
-        document.getElementById("button1").onclick = function(){open_cage()};
-    };
+    items['item'].onclick= function(){clicked()};
 }
-
-function open_cage(){
+function clicked(){           //als sleutel is geklikt
+    document.getElementById("description").innerHTML= "Mooi, je hebt hem gevonden maak snel de kooi open!";
+    items['option_three'].style.display= "none";
+    items['option_two'].style.display= "inline";
+    items['option_one'].style.display= "none";
+    document.getElementById("button1").innerHTML= "Kooi openmaken";
+    items['item'].style.display= "none";
+    items['option_one'].onclick = function(){cageopen()};
+}
+function cageopen(){          //kooi open
     document.getElementById("description").innerHTML= "Mooi, je bent eruit. Je hoort dat er NU iets naar beneden komt! Zoek snel uit hoe je hier wegkomt!";
 }
 
